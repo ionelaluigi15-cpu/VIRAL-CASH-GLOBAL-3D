@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --background: #08090d;
+  --panel: #12151c;
+  --gold: #d9b568;
+  --gold-light: #ffe3a1;
+  --text: #ffffff;
+  --muted: #9299a8;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+::selection {
+  background: var(--gold);
+  color: #000;
+}
+
+.glow {
+  box-shadow: 0 0 25px rgba(217,181,104,.25);
+}
+
+.gold {
+  color: var(--gold);
+}
+
+.panel {
+  background: linear-gradient(145deg,#191d27,#101219);
+  border: 1px solid rgba(217,181,104,.2);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.gold-button {
+  background: linear-gradient(120deg,#a77c35,#ffe3a1);
+  color: #090909;
+  border: none;
+  padding: 14px 24px;
+  border-radius: 8px;
+  font-weight: 800;
+  transition: .3s;
+}
+
+.gold-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 25px rgba(217,181,104,.4);
+}
+
+@media(max-width:768px) {
+  .panel {
+    padding: 16px;
+  }
+}

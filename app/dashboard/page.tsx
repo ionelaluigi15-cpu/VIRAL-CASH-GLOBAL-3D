@@ -1,6 +1,7 @@
 "use client";
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { supabase } from "../../lib/supabase-browser";
 import {
   LayoutDashboard,
   BarChart3,
@@ -29,8 +30,54 @@ const platforms = [
 ];
 
 export default function Dashboard() {
-  const [active, setActive] = useState("Panoramica");
+  const [active, u] = useState("Panoramica");
+const router = useRouter();
+const [checkingAuth, setCheckingAuth] = useState(true);
 
+useEffect(() => {
+  let mounted = true;
+
+  const {
+    data: { subscription }
+  } = supabase.auth.onAuthStateChange(
+    (_event, session) => {
+      if (!session) {
+        router.replace("/login");
+      } else if (mounted) {
+        setCheckingAuth(false);
+      }
+    }
+  );
+
+  supabase.auth.getSession().then(({ data, error }) => {
+    if (!mounted) return;
+
+    if (error || !data.session) {
+      router.replace("/login");
+    } else {
+      setCheckingAuth(false);
+    }
+  });
+
+  return () => {
+    mounted = false;
+    subscription.unsubscribe();
+  };
+}, [router]);
+
+if (checkingAuth) {
+  return (
+    <main style={{
+      minHeight: "100vh",
+      background: "#08090d",
+      color: "#d9b568",
+      display: "grid",
+      placeItems: "center"
+    }}>
+      VERIFICA ACCOUNT...
+    </main>
+  );
+}
   return (
     <main style={{
       minHeight: "100vh",

@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-
 import {
   LayoutDashboard,
   BarChart3,
@@ -24,31 +23,28 @@ import {
   Menu,
   X,
   User,
-  Link2
+  Link2,
+  Megaphone
 } from "lucide-react";
-
-import type { LucideIcon } from "lucide-react";
 
 import { supabase } from "../../lib/supabase-browser";
 
 const GOLD = "#d9b568";
+
+const navigation = [
+  { label: "Panoramica", icon: LayoutDashboard },
+  { label: "Analytics", icon: BarChart3 },
+  { label: "Guadagni", icon: Wallet },
+  { label: "Community", icon: Users },
+  { label: "Campagne", icon: Megaphone },
+  { label: "Impostazioni", icon: Settings }
+];
 
 const platforms = [
   { name: "TikTok", icon: Play },
   { name: "Instagram", icon: Instagram },
   { name: "Facebook", icon: Facebook },
   { name: "YouTube", icon: Youtube }
-];
-
-const navigation: {
-  label: string;
-  icon: LucideIcon;
-}[] = [
-  { label: "Panoramica", icon: LayoutDashboard },
-  { label: "Analytics", icon: BarChart3 },
-  { label: "Guadagni", icon: Wallet },
-  { label: "Community", icon: Users },
-  { label: "Impostazioni", icon: Settings }
 ];
 
 export default function Dashboard() {
@@ -82,8 +78,8 @@ export default function Dashboard() {
     const {
       data: { subscription }
     } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        if (!session) {
+      (event, session) => {
+        if (event === "SIGNED_OUT" || !session) {
           router.replace("/login");
         } else if (mounted) {
           setEmail(session.user.email || "");
@@ -98,22 +94,40 @@ export default function Dashboard() {
   }, [router]);
 
   async function handleLogout() {
-    await supabase.auth.signOut();
+    const { error } = await supabase.auth.signOut();
+
+    if (error) {
+      setNotice("Errore durante la disconnessione.");
+      return;
+    }
+
     router.replace("/login");
     router.refresh();
   }
 
-  function handleConnect(name: string) {
+  function connectSocial(name: string) {
     setNotice(
-      `Collegamento ${name}: configurazione OAuth e API ufficiali necessaria.`
+      `Collegamento ${name}: servono OAuth e API ufficiali.`
     );
   }
 
   if (loading) {
     return (
       <main className="loading">
-        <h2>VIRAL CASH GLOBAL</h2>
-        <p>Caricamento della piattaforma...</p>
+        <h1>VIRAL CASH GLOBAL</h1>
+        <p>Caricamento piattaforma...</p>
+
+        <style jsx>{`
+          .loading {
+            min-height: 100vh;
+            display: grid;
+            place-content: center;
+            text-align: center;
+            background: #08090d;
+            color: #d9b568;
+            font-family: Arial;
+          }
+        `}</style>
       </main>
     );
   }
@@ -121,7 +135,10 @@ export default function Dashboard() {
   return (
     <main className="dashboard">
 
-      {/* SIDEBAR */}
+      <div
+        className={`overlay ${menuOpen ? "visible" : ""}`}
+        onClick={() => setMenuOpen(false)}
+      />
 
       <aside className={`sidebar ${menuOpen ? "open" : ""}`}>
 
@@ -142,7 +159,7 @@ export default function Dashboard() {
         </p>
 
         <nav>
-          {navigation.map((item) => {
+          {navigation.map(item => {
             const Icon = item.icon;
 
             return (
@@ -167,28 +184,20 @@ export default function Dashboard() {
         </nav>
 
         <div className="sidebar-bottom">
+          <ShieldCheck color={GOLD} size={22} />
 
-          <ShieldCheck size={20} color={GOLD} />
+          <div>
+            <strong>GLOBAL SECURITY</strong>
+            <small>Protected workspace</small>
+          </div>
 
-          <p>
-            GLOBAL SECURITY
-            <br />
-            <span>Protected workspace</span>
-          </p>
-
-          <button
-            className="logout"
-            onClick={handleLogout}
-          >
+          <button className="logout" onClick={handleLogout}>
             <LogOut size={18} />
             ESCI
           </button>
-
         </div>
 
       </aside>
-
-      {/* MAIN CONTENT */}
 
       <section className="content">
 
@@ -196,7 +205,7 @@ export default function Dashboard() {
 
           <button
             className="menu-toggle"
-            onClick={() => setMenuOpen(!menuOpen)}
+            onClick={() => setMenuOpen(true)}
           >
             <Menu />
           </button>
@@ -207,37 +216,104 @@ export default function Dashboard() {
           </div>
 
           <div className="profile">
-            <Bell color={GOLD} size={21} />
+            <Bell color={GOLD} />
 
             <div className="avatar">
-              <User size={21} />
+              <User />
             </div>
           </div>
 
         </header>
 
-        {/* USER PROFILE */}
+        {notice && (
+          <div className="notice">
+            {notice}
+            <button onClick={() => setNotice("")}>
+              <X size={17} />
+            </button>
+          </div>
+        )}
 
-        <div className="welcome">
+        {active === "Panoramica" && (
+          <>
 
-          <div>
-            <span>WELCOME BACK</span>
+            <section className="welcome">
+              <div>
+                <span>WELCOME BACK</span>
 
-            <h2>
-              VIRAL CASH
-              <br />
-              <strong>GLOBAL</strong>
+                <h2>
+                  VIRAL CASH
+                  <br />
+                  <strong>GLOBAL</strong>
+                </h2>
+
+                <p>
+                  La tua presenza social.
+                  Le tue opportunità globali.
+                </p>
+
+                <small className="email">
+                  <User size={15} />
+                  {email}
+                </small>
+              </div>
+
+              <Globe className="globe" size={115} />
+            </section>
+
+            <h2 className="section-title">
+              PERFORMANCE OVERVIEW
             </h2>
 
-            <p>
-              La tua presenza social.
-              Le tue opportunità globali.
-            </p>
+            <div className="stats">
 
-            <small className="user-email">
-              <User size={14} />
-              {email}
-            </small>
-          </div>
+              {[
+                ["Visualizzazioni", "—", Eye],
+                ["Follower", "—", Users],
+                ["Interazioni", "—", Heart],
+                ["Guadagni", "€ 0,00", Wallet]
+              ].map(([name, value, Icon]: any) => (
 
-          <Gl
+                <div className="stat-card" key={name}>
+                  <Icon size={26} color={GOLD} />
+
+                  <p>{name}</p>
+
+                  <h2>{value}</h2>
+
+                  <small>Dati non ancora disponibili</small>
+                </div>
+
+              ))}
+
+            </div>
+
+            <h2 className="section-title">
+              I TUOI SOCIAL NETWORK
+            </h2>
+
+            <div className="social-grid">
+
+              {platforms.map(social => (
+                <div className="social-card" key={social.name}>
+
+                  <social.icon size={35} color={GOLD} />
+
+                  <h3>{social.name}</h3>
+
+                  <p>Account non collegato</p>
+
+                  <button
+                    onClick={() => connectSocial(social.name)}
+                  >
+                    <Plus size={17} />
+                    COLLEGA ACCOUNT
+                  </button>
+
+                </div>
+              ))}
+
+            </div>
+
+            <section className="opportunities">
+              <Globe

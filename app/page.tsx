@@ -43,7 +43,7 @@ export default function Home() {
           VIRAL CASH GLOBAL
         </h2>
 
-        <Link href="/dashboard" style={{
+        <Link href="/login" style={{
           color: "#ffe3a1",
           border: "1px solid #d9b568",
           padding: "12px 18px",
@@ -91,7 +91,7 @@ export default function Home() {
           opportunità di monetizzazione.
         </p>
 
-        <Link href="/dashboard" style={{
+        <Link href="/register" style={{
           display: "inline-flex",
           alignItems: "center",
           gap: "12px",

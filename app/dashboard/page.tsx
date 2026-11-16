@@ -210,4 +210,34 @@ export default function Dashboard() {
             <Bell color={GOLD} size={21} />
 
             <div className="avatar">
-              <User size={21
+              <User size={21} />
+            </div>
+          </div>
+
+        </header>
+
+        {/* USER PROFILE */}
+
+        <div className="welcome">
+
+          <div>
+            <span>WELCOME BACK</span>
+
+            <h2>
+              VIRAL CASH
+              <br />
+              <strong>GLOBAL</strong>
+            </h2>
+
+            <p>
+              La tua presenza social.
+              Le tue opportunità globali.
+            </p>
+
+            <small className="user-email">
+              <User size={14} />
+              {email}
+            </small>
+          </div>
+
+          <Gl

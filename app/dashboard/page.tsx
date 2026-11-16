@@ -317,7 +317,8 @@ export default function Dashboard() {
 
             <section className="opportunities">
               <Globe
-                size={30}
+
+                       size={30}
                 color={GOLD}
               />
 
@@ -549,4 +550,429 @@ export default function Dashboard() {
           align-items: center;
           justify-content: space-between;
           padding-bottom: 25px;
-          border-bottom: 1px solid #282930
+          border-bottom: 1px solid #282930;
+        }
+
+        .topbar small {
+          color: ${GOLD};
+          letter-spacing: 2px;
+          font-size: 10px;
+        }
+
+        .topbar h1 {
+          margin: 7px 0 0;
+          font-size: 27px;
+        }
+
+        .profile {
+          display: flex;
+          align-items: center;
+          gap: 18px;
+        }
+
+        .avatar {
+          width: 42px;
+          height: 42px;
+          border-radius: 50%;
+          display: grid;
+          place-items: center;
+          background: #29251c;
+          color: ${GOLD};
+          border: 1px solid ${GOLD};
+        }
+
+        .welcome {
+          margin-top: 28px;
+          padding: 35px;
+          min-height: 240px;
+          border: 1px solid #66502b;
+          border-radius: 18px;
+          background:
+            radial-gradient(circle at 80% 50%, #42351d, transparent 45%),
+            linear-gradient(120deg, #191a20, #111216);
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          overflow: hidden;
+        }
+
+        .welcome span {
+          color: ${GOLD};
+          font-size: 11px;
+          letter-spacing: 3px;
+        }
+
+        .welcome h2 {
+          font-size: 38px;
+          line-height: 1.15;
+          margin: 15px 0;
+        }
+
+        .welcome h2 strong {
+          color: ${GOLD};
+        }
+
+        .welcome p {
+          color: #aaa;
+          font-size: 14px;
+        }
+
+        .email {
+          display: flex;
+          align-items: center;
+          gap: 7px;
+          color: ${GOLD};
+          margin-top: 20px;
+          overflow-wrap: anywhere;
+        }
+
+        .globe {
+          color: ${GOLD};
+          opacity: .8;
+          flex-shrink: 0;
+        }
+
+        .section-title {
+          margin: 35px 0 18px;
+          color: ${GOLD};
+          font-size: 14px;
+          letter-spacing: 2px;
+        }
+
+        .stats {
+          display: grid;
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          gap: 15px;
+        }
+
+        .stat-card {
+          padding: 22px;
+          border: 1px solid #303037;
+          border-radius: 13px;
+          background: #131419;
+          min-width: 0;
+        }
+
+        .stat-card p {
+          color: #aaa;
+          font-size: 13px;
+        }
+
+        .stat-card h2 {
+          font-size: 25px;
+          margin: 10px 0;
+        }
+
+        .stat-card small {
+          color: #777;
+          font-size: 10px;
+        }
+
+        .social-grid {
+          display: grid;
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          gap: 15px;
+        }
+
+        .social-card {
+          padding: 23px 15px;
+          background: #131419;
+          border: 1px solid #303037;
+          border-radius: 13px;
+          text-align: center;
+        }
+
+        .social-card h3 {
+          margin: 14px 0 8px;
+        }
+
+        .social-card p {
+          color: #888;
+          font-size: 12px;
+        }
+
+        .social-card button {
+          margin-top: 12px;
+          padding: 10px;
+          width: 100%;
+          border: 1px solid ${GOLD};
+          border-radius: 7px;
+          background: #28231a;
+          color: ${GOLD};
+          font-size: 10px;
+          font-weight: bold;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 6px;
+        }
+
+        .opportunities {
+          margin-top: 30px;
+          padding: 25px;
+          display: flex;
+          align-items: center;
+          gap: 18px;
+          flex-wrap: wrap;
+          background: #15161c;
+          border: 1px solid #554526;
+          border-radius: 13px;
+        }
+
+        .opportunities h2 {
+          color: ${GOLD};
+          font-size: 15px;
+        }
+
+        .opportunities p {
+          color: #aaa;
+          font-size: 12px;
+        }
+
+        .opportunities button {
+          margin-left: auto;
+          padding: 12px 17px;
+          background: ${GOLD};
+          color: #111;
+          border: 0;
+          border-radius: 8px;
+          display: flex;
+          gap: 9px;
+          align-items: center;
+          font-weight: bold;
+        }
+
+        .panel {
+          margin-top: 35px;
+          padding: 35px;
+          background: #131419;
+          border: 1px solid #303037;
+          border-radius: 15px;
+          min-height: 300px;
+        }
+
+        .panel h2 {
+          color: ${GOLD};
+          margin-top: 20px;
+        }
+
+        .panel p {
+          color: #aaa;
+          line-height: 1.7;
+        }
+
+        .info-box {
+          margin-top: 25px;
+          padding: 20px;
+          background: #1d1e24;
+          border: 1px solid #393a40;
+          border-radius: 10px;
+          color: #bbb;
+          line-height: 1.6;
+          overflow-wrap: anywhere;
+        }
+
+        .earning {
+          color: ${GOLD};
+          font-size: 40px;
+          font-weight: bold;
+          margin: 25px 0;
+        }
+
+        .settings-logout {
+          margin-top: 20px;
+          padding: 13px 18px;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          color: white;
+          background: #642c32;
+          border: 0;
+          border-radius: 8px;
+        }
+
+        .notice {
+          margin-top: 20px;
+          padding: 14px;
+          border: 1px solid ${GOLD};
+          background: #211e17;
+          border-radius: 9px;
+          color: ${GOLD};
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 10px;
+        }
+
+        .notice button {
+          background: transparent;
+          border: 0;
+          color: ${GOLD};
+        }
+
+        .footer {
+          margin-top: 45px;
+          padding: 20px 0;
+          border-top: 1px solid #292a30;
+          color: #777;
+          font-size: 10px;
+          letter-spacing: 1px;
+          display: flex;
+          justify-content: space-between;
+          gap: 15px;
+        }
+
+        @media (min-width: 1500px) {
+          .content {
+            padding: 40px 55px;
+          }
+
+          .welcome {
+            min-height: 280px;
+          }
+
+          .stat-card {
+            padding: 30px;
+          }
+        }
+
+        @media (max-width: 1050px) {
+          .stats,
+          .social-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+          }
+
+          .content {
+            padding: 25px;
+          }
+        }
+
+        @media (max-width: 650px) {
+          .sidebar {
+            position: fixed;
+            z-index: 100;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 275px;
+            min-height: 100dvh;
+            transform: translateX(-100%);
+            transition: transform .25s ease;
+          }
+
+          .sidebar.open {
+            transform: translateX(0);
+          }
+
+          .close-menu {
+            display: block;
+            margin-left: auto;
+            background: transparent;
+            border: 0;
+            color: ${GOLD};
+          }
+
+          .overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 90;
+            background: #000a;
+          }
+
+          .overlay.visible {
+            display: block;
+          }
+
+          .content {
+            width: 100%;
+            padding: 18px;
+          }
+
+          .menu-toggle {
+            display: block;
+            background: #22232a;
+            border: 1px solid #444;
+            color: ${GOLD};
+            padding: 9px;
+            border-radius: 8px;
+          }
+
+          .topbar {
+            gap: 12px;
+          }
+
+          .topbar h1 {
+            font-size: 21px;
+          }
+
+          .topbar small {
+            font-size: 8px;
+          }
+
+          .profile {
+            gap: 8px;
+          }
+
+          .welcome {
+            padding: 23px;
+            min-height: 210px;
+          }
+
+          .welcome h2 {
+            font-size: 29px;
+          }
+
+          .globe {
+            width: 65px;
+          }
+
+          .stats,
+          .social-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+          }
+
+          .stat-card {
+            padding: 15px;
+          }
+
+          .stat-card h2 {
+            font-size: 21px;
+          }
+
+          .social-card {
+            padding: 18px 10px;
+          }
+
+          .opportunities {
+            padding: 18px;
+          }
+
+          .opportunities button {
+            margin-left: 0;
+            width: 100%;
+            justify-content: center;
+          }
+
+          .panel {
+            padding: 22px;
+          }
+
+          .footer {
+            flex-direction: column;
+          }
+        }
+
+        @media (max-width: 360px) {
+          .stats,
+          .social-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+      `}</style>
+
+    </main>
+  );
+}         
+          

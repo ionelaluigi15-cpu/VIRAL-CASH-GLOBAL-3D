@@ -317,3 +317,236 @@ export default function Dashboard() {
 
             <section className="opportunities">
               <Globe
+                size={30}
+                color={GOLD}
+              />
+
+              <div>
+                <h2>OPPORTUNITÀ GLOBALI</h2>
+                <p>
+                  Preparati a scoprire campagne e collaborazioni
+                  con aziende internazionali.
+                </p>
+              </div>
+
+              <button onClick={() => setActive("Campagne")}>
+                SCOPRI LE CAMPAGNE
+                <TrendingUp size={18} />
+              </button>
+            </section>
+
+          </>
+        )}
+
+        {active === "Analytics" && (
+          <section className="panel">
+            <BarChart3 size={40} color={GOLD} />
+            <h2>ANALYTICS</h2>
+            <p>
+              Qui potrai monitorare visualizzazioni,
+              follower, interazioni e performance.
+            </p>
+            <div className="info-box">
+              Collega i tuoi account social per visualizzare
+              i dati disponibili tramite le API ufficiali.
+            </div>
+          </section>
+        )}
+
+        {active === "Guadagni" && (
+          <section className="panel">
+            <Wallet size={40} color={GOLD} />
+            <h2>I TUOI GUADAGNI</h2>
+            <div className="earning">
+              € 0,00
+            </div>
+            <p>Saldo attuale della piattaforma.</p>
+            <div className="info-box">
+              I guadagni saranno visualizzati quando
+              saranno attivati i sistemi di campagne,
+              contabilizzazione e pagamento.
+            </div>
+          </section>
+        )}
+
+        {active === "Community" && (
+          <section className="panel">
+            <Users size={40} color={GOLD} />
+            <h2>GLOBAL COMMUNITY</h2>
+            <p>
+              Uno spazio dedicato ai creator e alle
+              collaborazioni internazionali.
+            </p>
+            <div className="info-box">
+              La sezione Community è in fase di sviluppo.
+            </div>
+          </section>
+        )}
+
+        {active === "Campagne" && (
+          <section className="panel">
+            <Megaphone size={40} color={GOLD} />
+            <h2>GLOBAL CAMPAIGNS</h2>
+            <p>
+              Scopri le opportunità di collaborazione
+              con aziende e brand internazionali.
+            </p>
+            <div className="info-box">
+              Le campagne saranno disponibili quando
+              verrà attivato il sistema di gestione
+              delle aziende e delle collaborazioni.
+            </div>
+          </section>
+        )}
+
+        {active === "Impostazioni" && (
+          <section className="panel">
+            <Settings size={40} color={GOLD} />
+            <h2>IMPOSTAZIONI ACCOUNT</h2>
+
+            <div className="info-box">
+              <strong>Account registrato</strong>
+              <p>{email}</p>
+            </div>
+
+            <button className="settings-logout" onClick={handleLogout}>
+              <LogOut size={18} />
+              DISCONNETTI ACCOUNT
+            </button>
+          </section>
+        )}
+
+        <footer className="footer">
+          VIRAL CASH GLOBAL © 2026
+          <span>GLOBAL CREATOR NETWORK</span>
+        </footer>
+
+      </section>
+
+      <style jsx global>{`
+        * {
+          box-sizing: border-box;
+        }
+
+        body {
+          margin: 0;
+          background: #08090d;
+          color: #f5f5f5;
+          font-family: Arial, sans-serif;
+        }
+
+        button {
+          font-family: inherit;
+          cursor: pointer;
+        }
+
+        .dashboard {
+          min-height: 100vh;
+          display: flex;
+          background: #08090d;
+        }
+
+        .sidebar {
+          width: 255px;
+          min-height: 100vh;
+          padding: 28px 18px;
+          background: #101116;
+          border-right: 1px solid #292a30;
+          display: flex;
+          flex-direction: column;
+          flex-shrink: 0;
+        }
+
+        .brand {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          color: ${GOLD};
+          font-size: 19px;
+          font-weight: 900;
+          letter-spacing: 1px;
+        }
+
+        .close-menu,
+        .menu-toggle {
+          display: none;
+        }
+
+        .menu-label {
+          color: #777;
+          font-size: 10px;
+          letter-spacing: 2px;
+          margin: 48px 0 18px;
+        }
+
+        .sidebar nav {
+          display: grid;
+          gap: 9px;
+        }
+
+        .nav-item {
+          display: flex;
+          align-items: center;
+          gap: 13px;
+          padding: 14px;
+          border: 0;
+          border-radius: 10px;
+          background: transparent;
+          color: #aaa;
+          text-align: left;
+          font-size: 14px;
+          transition: .2s;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+          background: #28231a;
+          color: ${GOLD};
+        }
+
+        .sidebar-bottom {
+          margin-top: auto;
+          padding-top: 25px;
+          border-top: 1px solid #303037;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          flex-wrap: wrap;
+        }
+
+        .sidebar-bottom strong {
+          display: block;
+          font-size: 10px;
+          color: ${GOLD};
+        }
+
+        .sidebar-bottom small {
+          color: #888;
+          font-size: 10px;
+        }
+
+        .logout {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding: 12px;
+          margin-top: 15px;
+          background: #251719;
+          border: 1px solid #573035;
+          color: #ff9b9b;
+          border-radius: 9px;
+        }
+
+        .content {
+          flex: 1;
+          min-width: 0;
+          padding: 28px 35px;
+        }
+
+        .topbar {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding-bottom: 25px;
+          border-bottom: 1px solid #282930
